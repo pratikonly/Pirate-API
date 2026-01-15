@@ -7,9 +7,6 @@ export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
-  // Seed the database on startup
-  await storage.seedPirates();
-
   app.get(api.pirates.list.path, async (req, res) => {
     const pirates = await storage.getPirates();
     res.json(pirates);
@@ -18,7 +15,6 @@ export async function registerRoutes(
   app.get(api.pirates.random.path, async (req, res) => {
     const pirate = await storage.getRandomPirate();
     if (!pirate) {
-      // Should not happen if seeded, but handle gracefully
       return res.status(404).json({ message: "No pirates found" });
     }
     res.json(pirate);
