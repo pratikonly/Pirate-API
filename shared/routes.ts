@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { pirateSchema } from './schema';
+import { pirateSchema } from './schema.js';
 
 export const errorSchemas = {
   notFound: z.object({

@@ -1,4 +1,4 @@
-import { type Pirate, piratesData } from "@shared/schema";
+import { type Pirate, piratesData } from "@shared/schema.js";
 
 export interface IStorage {
   getPirates(): Promise<Pirate[]>;
