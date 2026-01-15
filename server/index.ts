@@ -1,23 +1,13 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes.js";
-import { serveStatic } from "./static.js";
-import { createServer } from "http";
 
+// Create the Express app
 const app = express();
-const httpServer = createServer(app);
 
-// Export the app as default → Vercel uses this as the handler
+// Export as default → This is what Vercel uses as the handler for serverless functions
 export default app;
 
-// Optional: Extend IncomingMessage if you really need rawBody
-// (most apps don't need this on Vercel)
-declare module "http" {
-  interface IncomingMessage {
-    rawBody: unknown;
-  }
-}
-
-// Middleware
+// Raw body support (if you need it for webhooks or special middleware)
 app.use(
   express.json({
     verify: (req: any, _res, buf) => {
@@ -28,7 +18,7 @@ app.use(
 
 app.use(express.urlencoded({ extended: false }));
 
-// Custom logger helper
+// Custom log helper
 export function log(message: string, source = "express") {
   const formattedTime = new Date().toLocaleTimeString("en-US", {
     hour: "numeric",
@@ -39,7 +29,7 @@ export function log(message: string, source = "express") {
   console.log(`${formattedTime} [${source}] ${message}`);
 }
 
-// Request logging middleware (very useful on Vercel!)
+// Request logging middleware → Very useful to see logs on Vercel
 app.use((req, res, next) => {
   const start = Date.now();
   const path = req.path;
@@ -65,44 +55,30 @@ app.use((req, res, next) => {
   next();
 });
 
-// Error handler (should be last)
+// Global error handler - must be after all routes
 app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+  console.error("[ERROR]", err);
   const status = err.status || err.statusCode || 500;
   const message = err.message || "Internal Server Error";
-  console.error("[ERROR]", err);
   res.status(status).json({ message });
 });
 
-// Register API routes
+// Register your API routes (async IIFE so we can use await)
 (async () => {
-  // Always register routes (important!)
-  await registerRoutes(httpServer, app);
+  // Always register routes
+  await registerRoutes(null as any, app); // httpServer param is ignored on Vercel
 
-  // Serve static files (Vite build) in production
-  if (process.env.NODE_ENV === "production") {
-    serveStatic(app);
-  } 
-  // In development → setup Vite dev server
-  else {
+  // In production: Vercel serves static files automatically from dist/public
+  // No need for serveStatic(app) here – Vercel handles filesystem first
+  if (process.env.NODE_ENV !== "production") {
+    // Development only: Vite dev server setup
     try {
       const { setupVite } = await import("./vite.js");
-      await setupVite(httpServer, app);
+      const { createServer } = await import("http");
+      const devServer = createServer(app);
+      await setupVite(devServer, app);
     } catch (err) {
-      console.error("Failed to setup Vite in development:", err);
+      console.error("Failed to setup Vite dev server:", err);
     }
-  }
-
-  // Only listen in local development (NOT on Vercel!)
-  if (process.env.NODE_ENV !== "production" && process.env.VERCEL !== "1") {
-    const port = parseInt(process.env.PORT || "5000", 10);
-    httpServer.listen(
-      {
-        port,
-        host: "0.0.0.0",
-      },
-      () => {
-        log(`Server running on http://localhost:${port}`, "startup");
-      }
-    );
   }
 })();
