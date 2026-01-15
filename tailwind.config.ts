@@ -83,9 +83,12 @@ export default {
         },
       },
       fontFamily: {
+        heading: ["'Pirata One', system-ui"],
+        body: ["'Crimson Text', serif"],
+        mono: ["'Fira Code', monospace"],
         sans: ["var(--font-sans)"],
         serif: ["var(--font-serif)"],
-        mono: ["var(--font-mono)"],
+        mono_default: ["var(--font-mono)"],
       },
       keyframes: {
         "accordion-down": {
