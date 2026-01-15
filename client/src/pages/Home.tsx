@@ -1,7 +1,7 @@
 import { usePirates, useRandomPirate } from "@/hooks/use-pirates";
 import { PirateCard } from "@/components/PirateCard";
 import { ApiPreview } from "@/components/ApiPreview";
-import { Compass, Map, RefreshCw, ScrollText, Ship } from "lucide-react";
+import { Anchor, Compass, Map, RefreshCw, ScrollText, Ship } from "lucide-react";
 import { useState } from "react";
 import { motion } from "framer-motion";
 
