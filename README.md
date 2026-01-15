@@ -8,10 +8,9 @@ The character data (names, roles, and bounties) is stored in:
 
 ## Image Assets
 The API serves images from the following directory:
-`client/public/images/pirates/`
+`https://raw.githubusercontent.com/pratikonly/Pirate-API/refs/heads/main/client/public/images/pirates/`
 
-### Required Image Files
-To make the API functional with the frontend gallery, please upload the following images to the folder mentioned above:
+### Image Files
 - `luffy.png`
 - `zoro.png`
 - `shanks.png`
@@ -21,6 +20,16 @@ To make the API functional with the frontend gallery, please upload the followin
 - `brook.png`
 - `doflamingo.png`
 - `jack_sparrow.png`
+
+```typescript
+{
+  id: 10,
+  name: "New Pirate",
+  role: "Their Role",
+  bounty: "X Berries",
+  imagePath: "https://raw.githubusercontent.com/pratikonly/Pirate-API/refs/heads/main/client/public/images/pirates/(images-file-name)"
+}
+```
 
 ## API Endpoints
 
