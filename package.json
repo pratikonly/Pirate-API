@@ -5,8 +5,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "NODE_ENV=development tsx server/index.ts",
-    "build:frontend": "cd client && vite build",   // Build Vite to dist/public
-    "build:server": "tsx script/build.ts || tsc --noEmit && vite build --mode production",  // Adjust if script/build.ts exists; fallback to tsc
+    "build:frontend": "cd client && vite build",
+    "build:server": "tsx script/build.ts || tsc --noEmit && vite build --mode production",
     "build": "npm run build:frontend && npm run build:server",
     "start": "NODE_ENV=production node dist/index.cjs",
     "check": "tsc",
