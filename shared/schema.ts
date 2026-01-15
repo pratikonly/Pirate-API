@@ -27,10 +27,10 @@ export const piratesData: Pirate[] = [
   },
   {
     id: 3,
-    name: "Usopp",
-    role: "Sniper",
-    bounty: "500,000,000 Berries",
-    imagePath: "/images/pirates/usopp.png"
+    name: "Shanks",
+    role: "Captain of the Red Hair Pirates",
+    bounty: "4,048,900,000 Berries",
+    imagePath: "/images/pirates/shanks.png"
   },
   {
     id: 4,
@@ -41,17 +41,17 @@ export const piratesData: Pirate[] = [
   },
   {
     id: 5,
-    name: "Tony Tony Chopper",
-    role: "Doctor",
-    bounty: "1,000 Berries",
-    imagePath: "/images/pirates/chopper.png"
+    name: "Joyboy",
+    role: "Legendary Figure",
+    bounty: "Unknown",
+    imagePath: "/images/pirates/joyboy.png"
   },
   {
     id: 6,
-    name: "Franky",
-    role: "Shipwright",
-    bounty: "394,000,000 Berries",
-    imagePath: "/images/pirates/franky.png"
+    name: "Monkey D. Garp",
+    role: "Marine Vice Admiral",
+    bounty: "Unknown",
+    imagePath: "/images/pirates/garp.png"
   },
   {
     id: 7,
@@ -62,10 +62,10 @@ export const piratesData: Pirate[] = [
   },
   {
     id: 8,
-    name: "Jinbe",
-    role: "Helmsman",
-    bounty: "1,100,000,000 Berries",
-    imagePath: "/images/pirates/jinbe.png"
+    name: "Donquixote Doflamingo",
+    role: "Captain of the Donquixote Pirates",
+    bounty: "340,000,000 Berries (Frozen)",
+    imagePath: "/images/pirates/doflamingo.png"
   },
   {
     id: 9,

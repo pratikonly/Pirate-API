@@ -14,12 +14,12 @@ The API serves images from the following directory:
 To make the API functional with the frontend gallery, please upload the following images to the folder mentioned above:
 - `luffy.png`
 - `zoro.png`
-- `usopp.png`
+- `shanks.png`
 - `sanji.png`
-- `chopper.png`
-- `franky.png`
+- `joyboy.png`
+- `garp.png`
 - `brook.png`
-- `jinbe.png`
+- `doflamingo.png`
 - `jack_sparrow.png`
 
 ## API Endpoints
@@ -52,10 +52,10 @@ Returns a specific pirate profile by their unique ID.
 ## Included Characters
 - Monkey D. Luffy
 - Roronoa Zoro
-- Usopp
+- Shanks
 - Sanji
-- Tony Tony Chopper
-- Franky
+- Joyboy
+- Monkey D. Garp
 - Brook
-- Jinbe
+- Donquixote Doflamingo
 - Jack Sparrow (Special Guest)
